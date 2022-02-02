@@ -1,0 +1,59 @@
+/* arquivo para configurar a aparência do range */
+
+.range {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 300px;
+    height: 100px;
+    
+}
+
+.range label {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.range span {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.range span::after {
+    content: attr(data-unidade);
+    padding-left: 5px;
+}
+
+.range input[type='range'] {
+    appearance: none;
+}
+
+.range input[type='range']::-webkit-slider-runnable-track {
+    height: 8px;
+
+    /* é possível declarar variáveis para as cores. essa variável está no arquivo style.css */
+    background-color: var(--light-color);
+    cursor: pointer;
+}
+
+.range input[type='range']::-webkit-slider-thumb {
+    appearance: none;
+
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+
+    background-color: white;
+    transform: translateY(-1.5px);
+}
+
+.range input[type='range']::-moz-range-track {
+    height: 5px;
+    background-color: var(--light-color);
+}
+
+.range input[type='range']::-moz-range-thumb {
+    background-color: white;
+}
+
