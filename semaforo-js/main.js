@@ -14,22 +14,34 @@ const luzAmarela = () => semaforo.src = './img/amarelo.png'
 
 const luzVerde = () => semaforo.src = './img/verde.png'
 
-const luzes = () => {
+const automaticoLigado = () => idFarol != null
+
+const desligarAutomatico = () => {
+    if (automaticoLigado()) {
+        clearInterval(idFarol)
+        idFarol = null
+    }
+} 
+
+const luzesAutomaticas = () => {
     if (farol == 1) {
-        luzVerde()
+        luzVermelha()
         farol++
     } else if (farol == 2) {
         luzAmarela()
         farol++
     } else if (farol == 3) {
-        luzVermelha()
+        luzVerde()
+        farol++
+    } else if (farol == 4) {
+        luzAmarela()
         farol = 1
     }
 }
 
 const trocarLuzes = () => {
    if (idFarol == null) {
-       idFarol = setInterval(luzes, 500)
+       idFarol = setInterval(luzesAutomaticas, 900)
    } else {
        clearInterval(idFarol)
        idFarol = null
@@ -37,7 +49,22 @@ const trocarLuzes = () => {
 }
 
 
-vermelho.addEventListener('click', luzVermelha)
-amarelo.addEventListener('click', luzAmarela)
-verde.addEventListener('click', luzVerde)
+vermelho.addEventListener('click', () => {
+    desligarAutomatico()
+    farol = 1
+    luzVermelha()
+})
+
+amarelo.addEventListener('click', () => {
+    desligarAutomatico()
+    farol = 2
+    luzAmarela()
+})
+
+verde.addEventListener('click', () => {
+    desligarAutomatico()
+    farol = 3
+    luzVerde()
+})
+
 automatico.addEventListener('click', trocarLuzes)
