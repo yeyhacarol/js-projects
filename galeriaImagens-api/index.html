@@ -5,18 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./modal.css">
     <script src="./main.js" defer></script>
     <title>Dog api</title>
 </head>
 <body>
-    <header>
-        <input type="text" placeholder="Digite uma raça" id="raca">
+    <header class="home-header">
+        <input type="text" placeholder="Digite uma raça" id="raca" list="lista-racas">
+        <datalist id="lista-racas"></datalist>
         <button id="pesquisar">Pesquisar</button>
+        <button id="btnModal">Abrir Modal</button>
     </header>
     <main>
         <div id="image-container">
             <img src="" alt="">
         </div>
     </main>
+    <div class="modal-container" id="pageModal">
+        <div class="modal-content" id="content">
+            <header>
+                <h2>Modal</h2>
+            </header>
+            <form>
+                <label>Nome:</label>
+                <input type="">
+                <label>Celular:</label>
+                <input type="">
+                <label>E-mail:</label>
+                <input type="">
+            </form>
+            <footer>
+                <button id="btnFechar">Fechar</button>
+            </footer>
+        </div>
+    </div>
 </body>
 </html>

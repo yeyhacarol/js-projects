@@ -1,0 +1,42 @@
+.modal-container {
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    z-index: -1;
+}
+
+.modal-container.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.modal-content {
+    width: 500px;
+    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color:  rgb(141, 90, 141);
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 30px;
+}
+
+
+
