@@ -2,7 +2,7 @@
 
 /* import da função */
 import { openModal, closeModal } from './modal.js'
-import { createCustomers, readCustomers, deleteCustomer } from './customers.js'
+import { createCustomers, readCustomers, readCustomer, updateCustomer, deleteCustomer } from './customers.js'
 
 const createTr = (customer) => {
     const row = document.createElement('tr')
@@ -40,8 +40,12 @@ const saveCustomer = async () => {
         "cidade": document.getElementById('cidade').value
     }
 
-    //enviar json para o servidor api
-    await createCustomers(customer)
+    if (document.getElementById('modal').dataset.id)
+        await updateCustomer(customer, document.getElementById('modal').dataset.id)
+    else {
+        //enviar json para o servidor api
+        await createCustomers(customer)
+    }
 
     //fechar modal
     closeModal()
@@ -55,6 +59,15 @@ const customerAction = async (event) => {
         const [action, codigo] = event.target.id.split('-')
 
         if (action == 'editar') {
+            openModal()
+            let customer = await readCustomer(codigo)
+
+            document.getElementById('nome').value = customer.nome
+            document.getElementById('email').value = customer.email
+            document.getElementById('celular').value = customer.celular
+            document.getElementById('cidade').value = customer.cidade
+
+            document.getElementById('modal').dataset.id = customer.id
             
         } else if (action == 'excluir') {
             await deleteCustomer(codigo)
