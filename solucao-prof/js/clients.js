@@ -1,7 +1,7 @@
 'use strict'
 
-/* const url = 'https://testeleonid.herokuapp.com/clientes' */
-const url = 'http://localhost/carol/backend-php/clientes'
+const url = 'https://testeleonid.herokuapp.com/clientes'
+/* const url = 'http://localhost/carol/backend-php/clientes' */
 
 const readClients = async(id='') => {
     const response = await fetch(`${url}/${id}`)
