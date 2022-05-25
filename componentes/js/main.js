@@ -7,8 +7,13 @@ class card extends HTMLElement {
 
     build() {        
         const shadow = this.attachShadow({mode: 'open'})
-        shadow.appendChild(this.style())
-        shadow.appendChild(this.createCard())
+        /* shadow.appendChild(this.style())
+        shadow.appendChild(this.createCard()) */
+
+        setTimeout(() => {
+            shadow.appendChild(this.style());
+            shadow.appendChild(this.createCard());
+          },0)
     }
 
     //método para estilizar a div
@@ -77,7 +82,7 @@ class card extends HTMLElement {
         card.innerHTML = `
             <div class="card-text">${this.name()}</div>
             <div class="card-image"></div>
-            <div class="card-text">${this.team()}</div>
+            <div class="card-text">${this.status()}</div>
         `
         
         return card
@@ -107,11 +112,13 @@ class card extends HTMLElement {
         return studentimg
     }
 
-    team() {
-        const team = this.getAttribute('data-team') ?? 'Turma'
+    status() {
+        const status = this.getAttribute('data-status') ?? 'Situação'
 
-        return team
+        return status
     }
+
+    
 
 }
 

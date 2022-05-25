@@ -2,23 +2,28 @@
 
 import { readStudent } from "./student.js"
 
-const createCard = ({nome, turma, status, foto}) => {
-    const card = document.createElement('card-aluno')
-    card.setAttribute('data-name', nome)
-    card.setAttribute('data-team', turma)
-    /*card.setAttribute('data-status', status) */
-    card.setAttribute('data-image', foto)
+const load = () => {
+    const container = document.getElementById('container')
 
-    return card
-}
+    let cards = readStudent()
+        .then(data => data)
+        .then(data => {
+            data.map(student => {
+                const card = document.createElement('card-aluno')
+                card.setAttribute('data-name', student.nome)
+                card.setAttribute('data-image', student.foto)
+                card.setAttribute('data-status', student.status)
 
-const load = async () => {
-    const studentInfo = document.getElementById('card-aluno')
+                const bgcolor = card.getAttribute('data-status')
+                if (bgcolor == 'aprovado') {
+                    card.setAttribute('data-bgcolor', '#3ecf62')
+                } else if (bgcolor == 'reprovado') {
+                    card.setAttribute('data-bgcolor', '#cf3e3e')
+                }
 
-    const students = await readStudent()
-
-    const cards = students.map(createCard)
-    studentInfo.replaceChildren(...cards)
+                container.appendChild(card)
+            })
+        })
 }
 
 load()
